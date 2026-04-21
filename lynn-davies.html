@@ -79,11 +79,11 @@ body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
-/* Giant background wordmark — outlined letterforms with a slow glowing pulse */
+/* Giant background wordmark — outlined letterforms with slow glow + fade-into-content mask */
 .bg-wordmark {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(6rem, 18vw, 22rem);
-  line-height: 0.8;
+  font-size: clamp(5rem, 14vw, 14rem);
+  line-height: 0.85;
   letter-spacing: -0.02em;
   color: transparent;
   -webkit-text-stroke-width: 1.5px;
@@ -93,6 +93,8 @@ body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5
     0 0 80px rgba(245,242,236,0.02);
   pointer-events: none; user-select: none;
   animation: wordmark-pulse 5s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%);
 }
 .bg-wordmark-red {
   -webkit-text-stroke-color: rgba(220,38,38,0.42);
@@ -100,6 +102,10 @@ body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5
     0 0 40px rgba(220,38,38,0.12),
     0 0 80px rgba(220,38,38,0.06);
   animation: wordmark-pulse-red 5s ease-in-out infinite;
+}
+.bg-wordmark-up {
+  -webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%);
 }
 @keyframes wordmark-pulse {
   0%, 100% {
@@ -291,7 +297,7 @@ a, button { cursor: pointer; }
 <!-- THE FOUNDER -->
 <section class="relative bg-ink text-paper py-16 md:py-24">
   <div class="absolute inset-x-0 top-0 pointer-events-none" aria-hidden="true">
-    <div class="bg-wordmark bg-wordmark-red -mt-6 md:-mt-14">FOUNDER</div>
+    <div class="bg-wordmark bg-wordmark-red">FOUNDER</div>
   </div>
   <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
     <aside class="md:col-span-4">
@@ -455,7 +461,7 @@ a, button { cursor: pointer; }
 <!-- CLOSING: THE CONTINUATION -->
 <section class="relative bg-ink text-paper py-20 md:py-28 overflow-hidden">
   <div class="absolute inset-x-0 bottom-0 pointer-events-none" aria-hidden="true">
-    <div class="bg-wordmark bg-wordmark-red -mb-4 md:-mb-10" style="font-size: clamp(4rem, 14vw, 16rem);">LEGACY</div>
+    <div class="bg-wordmark bg-wordmark-red bg-wordmark-up" style="font-size: clamp(4rem, 14vw, 16rem);">LEGACY</div>
   </div>
 
   <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
