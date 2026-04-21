@@ -78,12 +78,15 @@ body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
-/* Timeline dots */
-.t-dot { position: relative; }
-.t-dot::before {
-  content: ""; position: absolute; left: -3px; top: 10px;
-  width: 9px; height: 9px; border-radius: 9999px;
-  background: #DC2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.18);
+/* Timeline tick — short horizontal rule crossing the vertical ledger line, aligned to the year cap height */
+.t-tick { position: relative; }
+.t-tick::before {
+  content: ""; position: absolute; left: -1.5rem; top: 0.9rem;
+  width: 1rem; height: 2px;
+  background: #DC2626;
+}
+@media (min-width: 768px) {
+  .t-tick::before { top: 1.1rem; }
 }
 
 /* Marquee */
@@ -379,56 +382,56 @@ a, button { cursor: pointer; }
       </div>
 
       <ol class="md:col-span-8 lg:col-start-6 lg:col-span-7 relative pl-6 border-l border-paper/15 space-y-10">
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-red leading-none">1959</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Founded</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">Chris Battin's challenge at a party becomes a club. Brian Jones is first captain and names it The Druids. Tom Battin trains the squad.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-gold leading-none">1966–68</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Three In A Row</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">Three consecutive Edmonton and Alberta championship titles. The club finds its edge, and the travel starts.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-paper leading-none">1975</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Druid Security</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">The club's own security group goes pro — later running events at Commonwealth Stadium, Rexall Place and the Grey Cup.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-paper leading-none">1980s</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Junior Boys Open</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">The Druids expand from a senior men's club to a pipeline, launching a junior boys program that feeds every side after.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-paper leading-none">1990s</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Girls + Women + Merger</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">Junior girls and senior women's programs join the club. In 1997 the Edmonton Druids merge with the Strathcona Outlaws — and the Druids come home to Sherwood Park.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-red leading-none">2010</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">50th Anniversary</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">The grounds are renamed <strong>Lynn Davies Rugby Park</strong>, honouring the man who acquired and maintained them, and brought rugby to Strathcona County.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-paper leading-none">2020</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">60th Anniversary</span>
           </div>
           <p class="text-paper/80 leading-relaxed max-w-xl">Six decades of rugby in the Edmonton and Strathcona communities.</p>
         </li>
-        <li class="t-dot reveal">
+        <li class="t-tick reveal">
           <div class="flex items-baseline gap-4 mb-1">
             <span class="font-display text-4xl md:text-5xl text-red leading-none">2026</span>
             <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">The Next Chapter</span>
