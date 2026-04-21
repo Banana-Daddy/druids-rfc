@@ -67,6 +67,22 @@ Every factual claim in the mockup cross-checked against the official site and ex
 
 Items where the site didn't give a direct answer and I wrote plausible copy. Confirm or replace before going live.
 
+### Lynn Davies tribute page (new)
+
+0. **Identification of Lynn Davies in the Antediluvians memorial photo** (`lynn-davies.html` Legacy section) — I captioned the central bearded man as Lynn Davies based on context: the photo was published on his 2019 Antediluvians RFC memorial service post; he's wearing a "Druids Rugby Sherwood Park · Since 1960" shirt; full white beard matches CBC's description of him nicknamed "Santa Claus" for that reason; context of publication is his memorial tribute. High confidence but not personally confirmed. **Please verify with someone who knew him** before going live, and ideally have the family/club approve public use.
+
+0a. **Championship years on tribute page** — I wrote "1966 to 1968" to match the Druids' own /history page. The Antediluvians memorial post lists "1967, 1968, 1969" instead. Two-source conflict. Deferred to the club's own published history. Confirm which dates are correct.
+
+0b. **"Lynn was there through all of it"** (Founder section) — asserts he played/coached in the 1966-68 championship era. Strongly implied by his founding-member status but not explicitly confirmed by either source. Reasonable but worth verifying.
+
+0c. **"Lynn kept showing up. Longtime members remember him on the grounds with his tractors"** — paraphrased from Antediluvians post's description "remained visible at the park maintaining grounds with his tractors." Light paraphrase, factual content preserved.
+
+0d. **"In 1994 he secured a lease on a field formerly owned by the Edmonton Gun Club"** — directly from CBC News article summary. Worth confirming 1994 as the exact year.
+
+0e. **"Approached a longtime Sherwood Park resident"** (He Cleaned the Field section) — verbatim from CBC. The unnamed resident's identity is unconfirmed; may be Ken Trumper or another current club member.
+
+### Main index.html (unchanged from original flag list)
+
 1. **"Thirty years after Lynn Davies brought rugby home to Sherwood Park"** (in grant section) — Davies moved to Sherwood Park in 1970 per CBC, helped form Outlaws in 1990, merger 1997. "Thirty years" is an approximation of the long arc of his work. Consider replacing with the more precise "Three decades after Lynn Davies set his sights on bringing rugby to Sherwood Park" or a specific year.
 
 2. **Tagline "Sixty-six years of Alberta rugby. Every age grade, every weekend."** — My composition. Strong copy but not pulled from the site. Confirm or replace.
