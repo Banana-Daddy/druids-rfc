@@ -126,26 +126,56 @@ body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5
 .sponsor-chip { filter: grayscale(1) brightness(1.4) contrast(0.85); opacity: 0.75; transition: all 0.3s ease; }
 .sponsor-chip:hover { filter: grayscale(0) brightness(1) contrast(1); opacity: 1; }
 
-/* Giant background wordmark */
+/* Giant background wordmark — outlined letterforms with a slow glowing pulse */
 .bg-wordmark {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(6rem, 18vw, 22rem);
   line-height: 0.8;
   letter-spacing: -0.02em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(245,242,236,0.08);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: rgba(245,242,236,0.22);
+  text-shadow:
+    0 0 40px rgba(245,242,236,0.04),
+    0 0 80px rgba(245,242,236,0.02);
   pointer-events: none; user-select: none;
+  animation: wordmark-pulse 5s ease-in-out infinite;
 }
 .bg-wordmark-red {
-  -webkit-text-stroke: 1px rgba(220,38,38,0.22);
+  -webkit-text-stroke-color: rgba(220,38,38,0.42);
+  text-shadow:
+    0 0 40px rgba(220,38,38,0.12),
+    0 0 80px rgba(220,38,38,0.06);
+  animation: wordmark-pulse-red 5s ease-in-out infinite;
 }
-.bg-wordmark-solid {
-  font-family: 'Bebas Neue', sans-serif;
-  background: linear-gradient(180deg, rgba(220,38,38,0.9) 0%, rgba(127,29,29,0.25) 60%, transparent 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  font-size: clamp(5rem, 22vw, 18rem);
-  line-height: 0.8; letter-spacing: -0.02em;
-  pointer-events: none; user-select: none;
+
+@keyframes wordmark-pulse {
+  0%, 100% {
+    -webkit-text-stroke-color: rgba(245,242,236,0.20);
+    text-shadow:
+      0 0 40px rgba(245,242,236,0.04),
+      0 0 80px rgba(245,242,236,0.02);
+  }
+  50% {
+    -webkit-text-stroke-color: rgba(245,242,236,0.45);
+    text-shadow:
+      0 0 60px rgba(245,242,236,0.12),
+      0 0 120px rgba(245,242,236,0.06);
+  }
+}
+@keyframes wordmark-pulse-red {
+  0%, 100% {
+    -webkit-text-stroke-color: rgba(220,38,38,0.38);
+    text-shadow:
+      0 0 40px rgba(220,38,38,0.12),
+      0 0 80px rgba(220,38,38,0.06);
+  }
+  50% {
+    -webkit-text-stroke-color: rgba(220,38,38,0.70);
+    text-shadow:
+      0 0 60px rgba(220,38,38,0.28),
+      0 0 120px rgba(220,38,38,0.14);
+  }
 }
 
 /* Nav scroll state */
@@ -200,6 +230,7 @@ a, button { cursor: pointer; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .marquee { animation: none; }
   .hero-image { transition: none; }
+  .bg-wordmark, .bg-wordmark-red { animation: none; }
 }
 </style>
 </head>
@@ -256,11 +287,6 @@ a, button { cursor: pointer; }
 <section id="top" class="hero-bg relative min-h-[100svh] pt-24 md:pt-28 flex items-center overflow-hidden">
   <div id="hero-image" class="hero-image" aria-hidden="true"></div>
   <div class="hero-veil"></div>
-
-  <!-- Background wordmark ghosting -->
-  <div class="absolute inset-x-0 bottom-12 md:bottom-16 overflow-hidden pointer-events-none" aria-hidden="true">
-    <div class="bg-wordmark-solid text-left pl-3 md:pl-8" style="font-size: clamp(3.5rem, 11vw, 9rem); line-height: 0.9;">DRUIDS</div>
-  </div>
 
   <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 py-10 md:py-20 w-full">
     <div class="max-w-4xl">

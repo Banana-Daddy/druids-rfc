@@ -79,16 +79,48 @@ body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
+/* Giant background wordmark — outlined letterforms with a slow glowing pulse */
 .bg-wordmark {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(6rem, 18vw, 22rem);
   line-height: 0.8;
   letter-spacing: -0.02em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(245,242,236,0.08);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: rgba(245,242,236,0.22);
+  text-shadow:
+    0 0 40px rgba(245,242,236,0.04),
+    0 0 80px rgba(245,242,236,0.02);
   pointer-events: none; user-select: none;
+  animation: wordmark-pulse 5s ease-in-out infinite;
 }
-.bg-wordmark-red { -webkit-text-stroke: 1px rgba(220,38,38,0.22); }
+.bg-wordmark-red {
+  -webkit-text-stroke-color: rgba(220,38,38,0.42);
+  text-shadow:
+    0 0 40px rgba(220,38,38,0.12),
+    0 0 80px rgba(220,38,38,0.06);
+  animation: wordmark-pulse-red 5s ease-in-out infinite;
+}
+@keyframes wordmark-pulse {
+  0%, 100% {
+    -webkit-text-stroke-color: rgba(245,242,236,0.20);
+    text-shadow: 0 0 40px rgba(245,242,236,0.04), 0 0 80px rgba(245,242,236,0.02);
+  }
+  50% {
+    -webkit-text-stroke-color: rgba(245,242,236,0.45);
+    text-shadow: 0 0 60px rgba(245,242,236,0.12), 0 0 120px rgba(245,242,236,0.06);
+  }
+}
+@keyframes wordmark-pulse-red {
+  0%, 100% {
+    -webkit-text-stroke-color: rgba(220,38,38,0.38);
+    text-shadow: 0 0 40px rgba(220,38,38,0.12), 0 0 80px rgba(220,38,38,0.06);
+  }
+  50% {
+    -webkit-text-stroke-color: rgba(220,38,38,0.70);
+    text-shadow: 0 0 60px rgba(220,38,38,0.28), 0 0 120px rgba(220,38,38,0.14);
+  }
+}
 
 .nav { transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease; }
 .nav-scrolled { background: rgba(10,10,10,0.82); backdrop-filter: blur(14px); border-bottom-color: rgba(245,242,236,0.08); }
@@ -165,6 +197,7 @@ a, button { cursor: pointer; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .tribute-hero-image { transition: none; }
+  .bg-wordmark, .bg-wordmark-red { animation: none; }
 }
 </style>
 </head>
