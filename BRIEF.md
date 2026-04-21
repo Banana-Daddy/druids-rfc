@@ -117,16 +117,13 @@ Only one image was auto-generated for this build; the rest were hotlinked from t
 ## Build Timing
 | Phase | Duration |
 |---|---|
-| Step 1: READ | 158s (~2m 38s) |
-| Step 2: DIRECTION (skill + 21st.dev + cache) | 217s (~3m 37s) |
-| Step 3: BUILD (HTML + preview verify) | 632s (~10m 32s) |
-| Hero image generation (parallel, inside BUILD) | 330s (~5m 30s — includes QA) |
-| Step 4: VERIFY (factual accuracy review) | *in progress* |
-| Step 5: BRIEF (this file) | *in progress* |
-| Step 6: PUBLISH | *pending* |
-| Step 7: DELIVER | *pending* |
-
-*Full timing will be updated at delivery.*
+| Step 1: READ | 2m 38s |
+| Step 2: DIRECTION (skill + 21st.dev + cache) | 3m 37s |
+| Step 3: BUILD (HTML + preview verify) | 10m 32s |
+| Hero image generation (parallel, inside BUILD) | 5m 30s (incl. QA) |
+| Step 4: VERIFY + Step 5: BRIEF + IMAGE_LOG | 2m 47s |
+| Step 6: PUBLISH (repo + Pages propagation) | 1m 21s |
+| **Total: Prompt to Live Link** | **20m 55s** |
 
 ---
 
