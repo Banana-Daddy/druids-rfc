@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lynn Davies — Strathcona Druids RFC</title>
+<meta name="description" content="A life in rugby. The Welshman who founded the Druids, built the Outlaws, cleaned the ground, and gave Sherwood Park sixty years of the sport he loved.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#0A0A0A',
+        'ink-2': '#1A1A1A',
+        'ink-3': '#2A2A2A',
+        paper: '#F5F2EC',
+        'paper-2': '#EDE8DE',
+        red: { DEFAULT: '#DC2626', deep: '#7F1D1D', soft: '#FEF2F2' },
+        gold: '#FBBF24',
+        'gold-deep': '#B8860B',
+        muted: '#525252',
+      },
+      fontFamily: {
+        display: ['"Bebas Neue"', 'sans-serif'],
+        body: ['"Source Sans 3"', 'sans-serif'],
+        serif: ['"Playfair Display"', 'serif'],
+      },
+    },
+  },
+};
+</script>
+
+<style>
+html { scroll-behavior: smooth; }
+body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5F2EC; -webkit-font-smoothing: antialiased; }
+
+.font-display { letter-spacing: 0.01em; }
+.display-xl { font-family: 'Bebas Neue', sans-serif; line-height: 0.85; letter-spacing: -0.01em; }
+
+.rule { height: 1px; background: linear-gradient(90deg, transparent, currentColor, transparent); opacity: 0.25; }
+.rule-strong { height: 1px; background: currentColor; opacity: 0.6; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+.bg-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(6rem, 18vw, 22rem);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245,242,236,0.08);
+  pointer-events: none; user-select: none;
+}
+.bg-wordmark-red { -webkit-text-stroke: 1px rgba(220,38,38,0.22); }
+
+.nav { transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease; }
+.nav-scrolled { background: rgba(10,10,10,0.82); backdrop-filter: blur(14px); border-bottom-color: rgba(245,242,236,0.08); }
+
+.mm-closed { opacity: 0; pointer-events: none; transform: translateY(-8px); }
+.mm-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+.q-slash { position: relative; display: inline-block; }
+.q-slash::before {
+  content: ""; position: absolute; left: -16px; top: 6px; bottom: 6px; width: 3px; background: #DC2626;
+}
+
+.cornered { position: relative; }
+.cornered::before, .cornered::after, .cornered > .c-bl, .cornered > .c-br {
+  content: ""; position: absolute; width: 10px; height: 10px; border: 2px solid #DC2626;
+}
+.cornered::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.cornered::after { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+.cornered > .c-bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+.cornered > .c-br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+.btn-red { background: #DC2626; color: #F5F2EC; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
+.btn-red:hover { background: #7F1D1D; box-shadow: 0 8px 24px rgba(220,38,38,0.28); }
+.btn-outline { border: 1.5px solid rgba(245,242,236,0.6); color: #F5F2EC; transition: background .2s ease, border-color .2s ease; }
+.btn-outline:hover { background: rgba(245,242,236,0.08); border-color: #F5F2EC; }
+
+/* Hero with banner image (placeholder gradient until banner selected) */
+.tribute-hero {
+  background:
+    radial-gradient(circle at 30% 60%, rgba(220,38,38,0.18) 0%, transparent 55%),
+    radial-gradient(circle at 75% 40%, rgba(251,191,36,0.10) 0%, transparent 50%),
+    linear-gradient(160deg, #0A0A0A 0%, #1A0707 60%, #2A0A0A 100%);
+}
+.tribute-hero-image {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity 0.8s ease;
+}
+.tribute-hero-image.loaded { opacity: 0.75; }
+.tribute-hero-veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.25) 40%, rgba(10,10,10,0.90) 100%),
+    linear-gradient(90deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.15) 60%, rgba(10,10,10,0.55) 100%);
+  pointer-events: none;
+}
+
+/* Chapter stamps — vintage edition page feel */
+.chapter-stamp {
+  border: 1.5px solid rgba(245,242,236,0.25);
+  background: rgba(245,242,236,0.02);
+  padding: 4px 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: rgba(245,242,236,0.75);
+  display: inline-block;
+}
+
+/* Drop cap */
+.drop-cap::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 5.25rem;
+  line-height: 0.9;
+  float: left;
+  margin: 0.2rem 0.75rem -0.5rem 0;
+  color: #DC2626;
+}
+
+:focus-visible { outline: 2px solid #FBBF24; outline-offset: 2px; border-radius: 2px; }
+a, button { cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .tribute-hero-image { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav" class="nav fixed top-0 inset-x-0 z-50 border-b border-transparent">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 group">
+      <img src="https://static.wixstatic.com/media/5c77aa_0a3b4f2049be496699f4ba28a066b300~mv2.png" alt="Strathcona Druids crest" class="h-9 w-9 md:h-10 md:w-10 object-contain"
+           onerror="this.style.display='none'">
+      <div class="leading-none">
+        <div class="font-display text-xl md:text-2xl tracking-wider">DRUIDS</div>
+        <div class="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-paper/55 -mt-0.5">Est. 1959 · Sherwood Park</div>
+      </div>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 text-[13px] uppercase tracking-[0.14em] font-medium text-paper/80">
+      <a href="index.html#heritage" class="hover:text-paper transition-colors">The Club</a>
+      <a href="index.html#programs" class="hover:text-paper transition-colors">Programs</a>
+      <a href="index.html#park" class="hover:text-paper transition-colors">The Park</a>
+      <a href="lynn-davies.html" class="text-gold border-b border-gold/40 pb-0.5">Lynn Davies</a>
+      <a href="index.html#support" class="hover:text-paper transition-colors">Support</a>
+      <a href="index.html#contact" class="hover:text-paper transition-colors">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="index.html" class="hidden md:inline-flex items-center gap-2 btn-outline text-[12px] uppercase tracking-[0.14em] font-semibold px-4 py-2.5 rounded-sm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        Back to main
+      </a>
+      <button id="mm-toggle" class="lg:hidden p-2 -mr-2 text-paper" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mm" class="mm-closed lg:hidden absolute top-full inset-x-0 bg-ink/95 backdrop-blur-xl border-b border-paper/10 transition-all duration-300">
+    <div class="px-5 py-5 flex flex-col gap-1 text-[15px] uppercase tracking-[0.14em] font-medium text-paper/85">
+      <a href="index.html#heritage" class="py-2 border-b border-paper/5">The Club</a>
+      <a href="index.html#programs" class="py-2 border-b border-paper/5">Programs</a>
+      <a href="index.html#park" class="py-2 border-b border-paper/5">The Park</a>
+      <a href="lynn-davies.html" class="py-2 border-b border-paper/5 text-gold">Lynn Davies</a>
+      <a href="index.html#support" class="py-2 border-b border-paper/5">Support</a>
+      <a href="index.html#contact" class="py-2">Contact</a>
+      <a href="index.html" class="mt-3 btn-outline text-center px-4 py-3 rounded-sm text-[13px] tracking-[0.14em] font-semibold">Back to main</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="tribute-hero relative min-h-[90svh] pt-24 md:pt-28 flex items-end overflow-hidden">
+  <div id="tribute-hero-image" class="tribute-hero-image" aria-hidden="true"></div>
+  <div class="tribute-hero-veil"></div>
+
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 py-16 md:py-24 w-full grid md:grid-cols-12 gap-6">
+    <div class="md:col-span-9">
+      <div class="flex items-center gap-3 text-[11px] md:text-xs uppercase tracking-[0.24em] text-paper/70 mb-6">
+        <span class="inline-block w-8 h-px bg-gold"></span>
+        <span>A Tribute · Druids RFC</span>
+      </div>
+
+      <h1 class="display-xl text-[22vw] md:text-[15vw] lg:text-[12vw] font-display text-paper mb-4 md:mb-6">
+        Lynn<br>Davies.
+      </h1>
+
+      <p class="font-serif italic text-xl md:text-2xl text-paper/85 max-w-2xl leading-snug mb-3">
+        The Welshman who arrived at twenty-two with a rugby ball, and spent six decades making sure Alberta had somewhere to play.
+      </p>
+      <p class="text-sm md:text-base text-paper/60 max-w-lg">
+        1959 a club · 1960 a founding member · 1990 a second team · 1994 a field cleaned by hand · 2010 a ground renamed · 2019 a legacy continuing.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- OPENING LEDE -->
+<section class="relative bg-ink text-paper py-16 md:py-24 border-t border-paper/10">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
+    <aside class="md:col-span-4">
+      <span class="chapter-stamp">I · The Welshman</span>
+    </aside>
+    <div class="md:col-span-8 reveal">
+      <p class="drop-cap text-lg md:text-xl leading-relaxed text-paper/90">
+        Lynn Davies came to Canada from Wales when he was twenty-two. He brought the national sport with him. Over six decades he would mentor countless players, found two rugby clubs, build a ground, clean it by hand when he had to, and hand the next generation a park that carries his name. Rugby in Sherwood Park does not exist in the shape it does today without him.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE FOUNDER -->
+<section class="relative bg-ink text-paper py-16 md:py-24">
+  <div class="absolute inset-x-0 top-0 pointer-events-none" aria-hidden="true">
+    <div class="bg-wordmark bg-wordmark-red -mt-6 md:-mt-14">FOUNDER</div>
+  </div>
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
+    <aside class="md:col-span-4">
+      <span class="chapter-stamp">II · 1960–1989</span>
+      <h2 class="display-xl mt-6 text-[13vw] md:text-[6vw] lg:text-[4.5vw] text-paper leading-[0.92]">
+        A Founding<br>Member.
+      </h2>
+    </aside>
+
+    <div class="md:col-span-8 reveal space-y-5 text-base md:text-lg leading-relaxed text-paper/85">
+      <p>
+        Davies was a player and a founding member of the Strathcona Druids. He played <strong>prop</strong> and he coached. In the club's breakthrough era, from <strong>1966 to 1968</strong>, the Druids took three consecutive Edmonton and Alberta championship titles — and Lynn was there through all of it.
+      </p>
+      <p>
+        In 1968 he co-founded the Edmonton Rugbyfest with Davie Graham. In 1985 he led the Druids on an Atlantic Canada tour and came back with a new name — <strong class="text-gold">"the Cod Father."</strong> In 1989 he co-organized a New Zealand and Australia tour that took Alberta rugby to the other side of the world.
+      </p>
+      <p>
+        For a young club trying to prove it belonged on a map, Lynn was the compass.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE OUTLAWS -->
+<section class="relative bg-paper text-ink py-16 md:py-24 overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
+    <aside class="md:col-span-4">
+      <span class="chapter-stamp" style="border-color: rgba(10,10,10,0.25); color: rgba(10,10,10,0.7);">III · The Early 1990s</span>
+      <h2 class="display-xl mt-6 text-[13vw] md:text-[6vw] lg:text-[4.5vw] text-ink leading-[0.92]">
+        He Cleaned<br>the Field.
+      </h2>
+    </aside>
+
+    <div class="md:col-span-8 reveal space-y-5 text-base md:text-lg leading-relaxed text-ink/85">
+      <p>
+        In 1990, Davies approached a longtime Sherwood Park resident about helping start a new team. That team became the <strong>Sherwood Park Outlaws Rugby Football Club</strong>. In 1994 he secured a lease on a field formerly owned by the Edmonton Gun Club.
+      </p>
+      <blockquote class="border-l-[3px] border-red pl-6 my-8 max-w-2xl">
+        <p class="font-serif italic text-xl md:text-2xl text-ink/90 leading-snug mb-3">
+          The lease required extensive renovations. The field was filled with broken clay pigeons, a giant forty-foot shooting tank, and lead-contaminated soil. Davies didn't hesitate. He started the work.
+        </p>
+        <footer class="text-xs uppercase tracking-[0.18em] text-ink/50">On the field that became Lynn Davies Rugby Park</footer>
+      </blockquote>
+      <p>
+        That work, done by a man who was already well past the age when most would have walked away from it, is the ground the club plays on today.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HOMECOMING -->
+<section class="relative bg-ink text-paper py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
+    <aside class="md:col-span-4">
+      <span class="chapter-stamp">IV · 1997–2010</span>
+      <h2 class="display-xl mt-6 text-[13vw] md:text-[6vw] lg:text-[4.5vw] text-paper leading-[0.92]">
+        A Ground<br>Named.
+      </h2>
+    </aside>
+
+    <div class="md:col-span-8 reveal space-y-5 text-base md:text-lg leading-relaxed text-paper/85">
+      <p>
+        In <strong>1997</strong> the Edmonton Druids merged with the Strathcona Outlaws. The two clubs Lynn had helped build became one — and came home to the field he had cleaned three years earlier.
+      </p>
+      <p>
+        In July <strong>2010</strong>, on the club's 50th anniversary, the grounds were renamed <strong class="text-gold">Lynn Davies Rugby Park</strong>. Not for a capital donation. Not for a plaque. For thirty years of building, scrubbing, mentoring, coaching, and showing up.
+      </p>
+      <p>
+        Lynn kept showing up. Longtime members remember him on the grounds with his tractors, maintaining the park he'd built.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE TOURNAMENT -->
+<section class="relative bg-ink text-paper py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
+    <aside class="md:col-span-4">
+      <span class="chapter-stamp">V · The Kids</span>
+      <h2 class="display-xl mt-6 text-[13vw] md:text-[6vw] lg:text-[4.5vw] text-paper leading-[0.92]">
+        Six Hundred<br>Students.
+      </h2>
+    </aside>
+
+    <div class="md:col-span-8 reveal space-y-5 text-base md:text-lg leading-relaxed text-paper/85">
+      <p>
+        Lynn always had a passion for youth rugby. He helped create what is now the biggest high school rugby tournament in Alberta — and the tournament is now named after him.
+      </p>
+      <p>
+        Every spring, <strong>32 teams</strong> and more than <strong>600 students</strong> take over the park for the Lynn Davies High School Rugby Tournament, hosted by McNally High School and the Druids. The 2026 edition, on April 24–25, is the <strong>32nd annual</strong>.
+      </p>
+      <p>
+        The kids called him <strong class="text-gold">Santa Claus</strong>. He had the beard for it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="relative bg-paper text-ink py-14 md:py-20 border-y border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+    <div class="text-[11px] uppercase tracking-[0.24em] text-red-deep font-semibold mb-8">At a Glance</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+      <div class="reveal">
+        <div class="font-display text-5xl md:text-7xl leading-none text-ink">22</div>
+        <div class="rule-strong my-3 text-ink/40"></div>
+        <div class="text-sm text-ink/70">Years old when he arrived from Wales</div>
+      </div>
+      <div class="reveal">
+        <div class="font-display text-5xl md:text-7xl leading-none text-ink">2</div>
+        <div class="rule-strong my-3 text-ink/40"></div>
+        <div class="text-sm text-ink/70">Rugby clubs founded in Alberta</div>
+      </div>
+      <div class="reveal">
+        <div class="font-display text-5xl md:text-7xl leading-none text-red">60+</div>
+        <div class="rule-strong my-3 text-ink/40"></div>
+        <div class="text-sm text-ink/70">Years mentoring players</div>
+      </div>
+      <div class="reveal">
+        <div class="font-display text-5xl md:text-7xl leading-none text-ink">600<span class="text-ink/50 text-3xl md:text-5xl">+</span></div>
+        <div class="rule-strong my-3 text-ink/40"></div>
+        <div class="text-sm text-ink/70">Students at the tournament that bears his name, every year</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING: THE CONTINUATION -->
+<section class="relative bg-ink text-paper py-20 md:py-28 overflow-hidden">
+  <div class="absolute inset-x-0 bottom-0 pointer-events-none" aria-hidden="true">
+    <div class="bg-wordmark bg-wordmark-red -mb-4 md:-mb-10" style="font-size: clamp(4rem, 14vw, 16rem);">LEGACY</div>
+  </div>
+
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
+    <aside class="md:col-span-4">
+      <span class="chapter-stamp">VI · July 28, 2019</span>
+      <h2 class="display-xl mt-6 text-[13vw] md:text-[6vw] lg:text-[4.5vw] text-paper leading-[0.92]">
+        And On<br>It Goes.
+      </h2>
+    </aside>
+
+    <div class="md:col-span-8 reveal space-y-5 text-base md:text-lg leading-relaxed text-paper/85">
+      <p>
+        Lynn Davies passed away on Sunday, <strong>July 28, 2019</strong>. He was a proud Welshman, a founding member of the Druids, a key recruiter, a coach, a friend, and a mentor to generations of rugby players — including the ones who'd later name their ground after him.
+      </p>
+      <p>
+        In April 2026, the Druids received a <strong class="text-gold">$699,508 provincial grant</strong> from Alberta's Community Facility Enhancement Program. The money will build a new modular clubhouse and realign the pitches on the field Lynn cleaned by hand thirty years ago.
+      </p>
+      <p>
+        The park continues. The club continues. Every weekend, every age grade, every season. Lynn would have had the tractor out.
+      </p>
+
+      <div class="pt-6 flex flex-col sm:flex-row gap-3">
+        <a href="index.html#park" class="btn-red inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-sm uppercase tracking-[0.14em] text-sm font-semibold">
+          Visit the Park
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="index.html#grant" class="btn-outline inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-sm uppercase tracking-[0.14em] text-sm font-semibold">
+          Read the 2026 Grant Announcement
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative bg-ink text-paper pt-10 md:pt-14 pb-4 border-t border-paper/10">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <img src="https://static.wixstatic.com/media/5c77aa_0a3b4f2049be496699f4ba28a066b300~mv2.png" alt="Strathcona Druids crest" class="h-10 w-10 object-contain"
+           onerror="this.style.display='none'">
+      <div>
+        <div class="font-display text-xl tracking-wider">Strathcona Druids</div>
+        <div class="text-[11px] uppercase tracking-[0.2em] text-paper/55">Rugby Football Club · Est. 1959</div>
+      </div>
+    </div>
+    <div class="text-[11px] uppercase tracking-[0.14em] text-paper/45">
+      Lynn Davies · 2019 · In memoriam
+    </div>
+    <a href="index.html" class="inline-flex items-center gap-2 btn-outline px-4 py-2.5 rounded-sm uppercase tracking-[0.14em] text-xs font-semibold">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Back to Druids RFC
+    </a>
+  </div>
+
+  <div style="text-align:center; padding:1.5rem 1rem 0; font-size:0.7rem; letter-spacing:0.05em; opacity:0.45;">
+    <a href="https://instagram.com/BananaCares" target="_blank" rel="noopener" style="text-decoration:none; color:#F5F2EC;">
+      Mockup created by Banana Bytes
+    </a>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const onScroll = () => {
+  if (window.scrollY > 20) nav.classList.add('nav-scrolled');
+  else nav.classList.remove('nav-scrolled');
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const mmToggle = document.getElementById('mm-toggle');
+const mm = document.getElementById('mm');
+mmToggle.addEventListener('click', () => {
+  const open = mm.classList.toggle('mm-open');
+  mm.classList.toggle('mm-closed', !open);
+});
+mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mm.classList.remove('mm-open');
+  mm.classList.add('mm-closed');
+}));
+
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+
+// Load banner image when chosen (path set later)
+(function loadBanner() {
+  const img = new Image();
+  img.onload = () => {
+    const bg = document.getElementById('tribute-hero-image');
+    if (!bg) return;
+    bg.style.backgroundImage = 'url(images/lynn-banner.jpg)';
+    bg.classList.add('loaded');
+  };
+  img.onerror = () => { /* keep gradient */ };
+  img.src = 'images/lynn-banner.jpg';
+})();
+</script>
+</body>
+</html>
