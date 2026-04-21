@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strathcona Druids Rugby Football Club — Est. 1959 · Sherwood Park, Alberta</title>
+<meta name="description" content="Sixty-six years of Alberta rugby. Mini, junior, and senior programs for boys, girls, men, and women at Lynn Davies Rugby Park in Sherwood Park, AB.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#0A0A0A',
+        'ink-2': '#1A1A1A',
+        'ink-3': '#2A2A2A',
+        paper: '#F5F2EC',
+        'paper-2': '#EDE8DE',
+        red: {
+          DEFAULT: '#DC2626',
+          deep: '#7F1D1D',
+          soft: '#FEF2F2',
+        },
+        gold: '#FBBF24',
+        'gold-deep': '#B8860B',
+        muted: '#525252',
+      },
+      fontFamily: {
+        display: ['"Bebas Neue"', 'sans-serif'],
+        body: ['"Source Sans 3"', 'sans-serif'],
+        serif: ['"Playfair Display"', 'serif'],
+      },
+    },
+  },
+};
+</script>
+
+<style>
+html { scroll-behavior: smooth; }
+body { font-family: 'Source Sans 3', sans-serif; background: #0A0A0A; color: #F5F2EC; -webkit-font-smoothing: antialiased; }
+
+/* Hero initial gradient (replaced by hero.jpg once generated) */
+.hero-bg {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(220,38,38,0.28) 0%, transparent 55%),
+    radial-gradient(circle at 85% 75%, rgba(251,191,36,0.10) 0%, transparent 50%),
+    linear-gradient(135deg, #0A0A0A 0%, #1A0505 55%, #2A0808 100%);
+  position: relative;
+}
+.hero-image {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity 0.8s ease;
+}
+.hero-image.loaded { opacity: 1; }
+.hero-veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 40%, rgba(10,10,10,0.85) 100%),
+    linear-gradient(90deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.20) 50%, rgba(10,10,10,0.45) 100%);
+  pointer-events: none;
+}
+
+/* Bebas Neue letter-spacing tune */
+.font-display { letter-spacing: 0.01em; }
+.display-xl { font-family: 'Bebas Neue', sans-serif; line-height: 0.85; letter-spacing: -0.01em; }
+
+/* Vintage thin rule */
+.rule { height: 1px; background: linear-gradient(90deg, transparent, currentColor, transparent); opacity: 0.25; }
+.rule-strong { height: 1px; background: currentColor; opacity: 0.6; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Timeline dots */
+.t-dot { position: relative; }
+.t-dot::before {
+  content: ""; position: absolute; left: -3px; top: 10px;
+  width: 9px; height: 9px; border-radius: 9999px;
+  background: #DC2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.18);
+}
+
+/* Marquee */
+.marquee { display: flex; gap: 4rem; animation: scroll 45s linear infinite; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-wrap:hover .marquee { animation-play-state: paused; }
+
+/* Banded sponsor chip */
+.sponsor-chip { filter: grayscale(1) brightness(1.4) contrast(0.85); opacity: 0.75; transition: all 0.3s ease; }
+.sponsor-chip:hover { filter: grayscale(0) brightness(1) contrast(1); opacity: 1; }
+
+/* Giant background wordmark */
+.bg-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(6rem, 18vw, 22rem);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245,242,236,0.08);
+  pointer-events: none; user-select: none;
+}
+.bg-wordmark-red {
+  -webkit-text-stroke: 1px rgba(220,38,38,0.22);
+}
+.bg-wordmark-solid {
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(180deg, rgba(220,38,38,0.9) 0%, rgba(127,29,29,0.25) 60%, transparent 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-size: clamp(5rem, 22vw, 18rem);
+  line-height: 0.8; letter-spacing: -0.02em;
+  pointer-events: none; user-select: none;
+}
+
+/* Nav scroll state */
+.nav { transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease; }
+.nav-scrolled { background: rgba(10,10,10,0.82); backdrop-filter: blur(14px); border-bottom-color: rgba(245,242,236,0.08); }
+
+/* Mobile menu */
+.mm-closed { opacity: 0; pointer-events: none; transform: translateY(-8px); }
+.mm-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+/* Editorial quote slash */
+.q-slash {
+  position: relative; display: inline-block;
+}
+.q-slash::before {
+  content: ""; position: absolute; left: -16px; top: 6px; bottom: 6px; width: 3px; background: #DC2626;
+}
+
+/* Corner decorators (Features 10 borrow) */
+.cornered { position: relative; }
+.cornered::before, .cornered::after,
+.cornered > .c-bl, .cornered > .c-br {
+  content: ""; position: absolute; width: 10px; height: 10px; border: 2px solid #DC2626;
+}
+.cornered::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.cornered::after { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+.cornered > .c-bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+.cornered > .c-br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+/* CTA buttons */
+.btn-red { background: #DC2626; color: #F5F2EC; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
+.btn-red:hover { background: #7F1D1D; box-shadow: 0 8px 24px rgba(220,38,38,0.28); }
+.btn-outline { border: 1.5px solid rgba(245,242,236,0.6); color: #F5F2EC; transition: background .2s ease, border-color .2s ease; }
+.btn-outline:hover { background: rgba(245,242,236,0.08); border-color: #F5F2EC; }
+
+/* Ticket stub shape */
+.ticket { position: relative; background: #F5F2EC; color: #0A0A0A; }
+.ticket::before, .ticket::after {
+  content: ""; position: absolute; top: 50%; width: 18px; height: 18px; background: #0A0A0A; border-radius: 9999px; transform: translateY(-50%);
+}
+.ticket::before { left: -9px; }
+.ticket::after { right: -9px; }
+.ticket-on-paper { background: #0A0A0A; color: #F5F2EC; }
+.ticket-on-paper::before, .ticket-on-paper::after { background: #F5F2EC; }
+
+/* Focus ring accessibility */
+:focus-visible { outline: 2px solid #FBBF24; outline-offset: 2px; border-radius: 2px; }
+a, button { cursor: pointer; }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee { animation: none; }
+  .hero-image { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav" class="nav fixed top-0 inset-x-0 z-50 border-b border-transparent">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-3 md:py-4 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5 group">
+      <img src="https://static.wixstatic.com/media/5c77aa_0a3b4f2049be496699f4ba28a066b300~mv2.png" alt="Strathcona Druids crest" class="h-9 w-9 md:h-10 md:w-10 object-contain"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div style="display:none" class="h-9 w-9 md:h-10 md:w-10 rounded-full bg-red items-center justify-center text-paper font-display text-lg">D</div>
+      <div class="leading-none">
+        <div class="font-display text-xl md:text-2xl tracking-wider">DRUIDS</div>
+        <div class="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-paper/55 -mt-0.5">Est. 1959 · Sherwood Park</div>
+      </div>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 text-[13px] uppercase tracking-[0.14em] font-medium text-paper/80">
+      <a href="#heritage" class="hover:text-paper transition-colors">The Club</a>
+      <a href="#programs" class="hover:text-paper transition-colors">Programs</a>
+      <a href="#park" class="hover:text-paper transition-colors">The Park</a>
+      <a href="#grant" class="hover:text-paper transition-colors">News</a>
+      <a href="#support" class="hover:text-paper transition-colors">Support</a>
+      <a href="#contact" class="hover:text-paper transition-colors">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="#play" class="hidden md:inline-flex items-center gap-2 btn-red text-[13px] uppercase tracking-[0.14em] font-semibold px-4 md:px-5 py-2.5 rounded-sm">
+        Join the Pack
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <button id="mm-toggle" class="lg:hidden p-2 -mr-2 text-paper" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mm" class="mm-closed lg:hidden absolute top-full inset-x-0 bg-ink/95 backdrop-blur-xl border-b border-paper/10 transition-all duration-300">
+    <div class="px-5 py-5 flex flex-col gap-1 text-[15px] uppercase tracking-[0.14em] font-medium text-paper/85">
+      <a href="#heritage" class="py-2 border-b border-paper/5">The Club</a>
+      <a href="#programs" class="py-2 border-b border-paper/5">Programs</a>
+      <a href="#park" class="py-2 border-b border-paper/5">The Park</a>
+      <a href="#grant" class="py-2 border-b border-paper/5">News</a>
+      <a href="#support" class="py-2 border-b border-paper/5">Support</a>
+      <a href="#contact" class="py-2">Contact</a>
+      <a href="#play" class="mt-3 btn-red text-center px-4 py-3 rounded-sm text-[13px] tracking-[0.14em] font-semibold">Join the Pack</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero-bg relative min-h-[100svh] pt-24 md:pt-28 flex items-center overflow-hidden">
+  <div id="hero-image" class="hero-image" aria-hidden="true"></div>
+  <div class="hero-veil"></div>
+
+  <!-- Background wordmark ghosting -->
+  <div class="absolute inset-x-0 bottom-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="bg-wordmark-solid text-left -mb-6 md:-mb-12 pl-3 md:pl-8">DRUIDS</div>
+  </div>
+
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 py-10 md:py-20 w-full grid md:grid-cols-12 gap-8 md:gap-6">
+    <div class="md:col-span-8 lg:col-span-7">
+      <div class="flex items-center gap-3 text-[11px] md:text-xs uppercase tracking-[0.24em] text-paper/65 mb-5 md:mb-8">
+        <span class="inline-block w-8 h-px bg-red"></span>
+        <span>Est. 1959 · Sherwood Park, AB</span>
+      </div>
+
+      <h1 class="display-xl text-[18vw] md:text-[14vw] lg:text-[11vw] font-display text-paper mb-4 md:mb-6">
+        THE DRUIDS
+      </h1>
+
+      <p class="text-lg md:text-xl lg:text-2xl text-paper/85 max-w-2xl leading-snug mb-2 md:mb-3 font-light">
+        Sixty-six years of Alberta rugby. Born of a Welshman's challenge at a 1959 party. Named by its first captain. Still knocking heads at Lynn Davies Rugby Park.
+      </p>
+      <p class="font-serif italic text-red text-base md:text-lg max-w-2xl">Mini. Junior. Senior. Every age grade, every weekend.</p>
+
+      <div class="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3">
+        <a href="#play" class="btn-red inline-flex items-center justify-center gap-2 px-6 py-4 rounded-sm uppercase tracking-[0.14em] text-sm font-semibold">
+          Register to Play
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#park" class="btn-outline inline-flex items-center justify-center gap-2 px-6 py-4 rounded-sm uppercase tracking-[0.14em] text-sm font-semibold">
+          The Park
+        </a>
+      </div>
+    </div>
+
+    <!-- Sidecar stat card -->
+    <aside class="md:col-span-4 lg:col-span-5 lg:pl-12 flex md:justify-end items-end">
+      <div class="cornered p-5 md:p-6 bg-ink/70 backdrop-blur-sm border border-paper/10 w-full md:max-w-xs lg:max-w-sm">
+        <span class="c-bl"></span><span class="c-br"></span>
+        <div class="text-[10px] uppercase tracking-[0.24em] text-red font-semibold mb-3">Latest</div>
+        <div class="font-display text-3xl md:text-4xl leading-none text-paper mb-2">$699,508</div>
+        <p class="text-sm md:text-[15px] text-paper/75 leading-snug mb-3">Provincial grant secured for Lynn Davies Rugby Park — new modular clubhouse and realigned pitches.</p>
+        <a href="#grant" class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-gold font-semibold hover:text-paper transition-colors">
+          Read the announcement
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Bottom contact strip -->
+  <div class="absolute bottom-0 inset-x-0 border-t border-paper/10 bg-ink/55 backdrop-blur-sm">
+    <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-3 md:py-4 grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 text-[11px] md:text-xs uppercase tracking-[0.18em] text-paper/70">
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        23360 Township Rd 524A, Sherwood Park
+      </div>
+      <div class="flex items-center gap-2 md:justify-center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:7804491793" class="hover:text-paper">780-449-1793</a>
+      </div>
+      <div class="flex items-center gap-2 md:justify-end">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:info@druidsrfc.com" class="hover:text-paper">info@druidsrfc.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRANT BANNER -->
+<section id="grant" class="relative bg-paper text-ink py-14 md:py-20 overflow-hidden">
+  <div class="absolute right-0 top-0 bottom-0 hidden md:flex items-center pr-6 pointer-events-none">
+    <span class="font-display text-[22vw] lg:text-[16vw] leading-[0.8] text-red/6 select-none">699K</span>
+  </div>
+
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-6 md:gap-10">
+    <div class="md:col-span-1 flex md:block">
+      <span class="inline-flex items-center gap-1.5 bg-red text-paper text-[10px] uppercase tracking-[0.24em] font-bold px-2.5 py-1 rounded-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+        New
+      </span>
+    </div>
+
+    <div class="md:col-span-8 reveal">
+      <div class="text-[11px] uppercase tracking-[0.24em] text-red-deep font-semibold mb-4">April 2026 · Community Facility Enhancement Program</div>
+      <h2 class="font-display text-[11vw] md:text-[5.5vw] lg:text-[4.5vw] leading-[0.88] text-ink mb-5">
+        A $699,508 Grant <br class="hidden md:block">Lands at Lynn Davies.
+      </h2>
+      <p class="text-lg md:text-xl text-ink/80 max-w-2xl leading-relaxed mb-4">
+        On April 8, Hon. Nate Glubish, MLA for Strathcona-Sherwood Park, presented the cheque that sets the next chapter of our grounds in motion — a new modular clubhouse and realigned pitches that open athletic opportunity to every age group we serve.
+      </p>
+      <p class="text-base text-ink/65 max-w-2xl">
+        Built in partnership with <strong>Stalcorp</strong>, <strong>Total Modular Limited</strong>, and <strong>McElhanney</strong>. Thirty years after Lynn Davies brought rugby home to Sherwood Park, the ground carries on.
+      </p>
+    </div>
+
+    <div class="md:col-span-3 reveal">
+      <img src="https://static.wixstatic.com/media/e73b12_2daa232ea546467c89f07b265620c559~mv2.png" alt="$699,508 grant cheque presented at Lynn Davies Rugby Park"
+           loading="lazy" class="w-full h-auto border-4 border-ink/10"
+           onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<!-- HERITAGE -->
+<section id="heritage" class="relative bg-ink text-paper py-20 md:py-32 overflow-hidden">
+  <div class="absolute inset-x-0 top-0 pointer-events-none" aria-hidden="true">
+    <div class="bg-wordmark bg-wordmark-red -mt-4 md:-mt-10">HERITAGE</div>
+  </div>
+
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-10 md:gap-12">
+    <div class="md:col-span-5 reveal">
+      <div class="text-[11px] uppercase tracking-[0.24em] text-red font-semibold mb-4">Chapter One · Fall 1959</div>
+      <h2 class="display-xl text-[15vw] md:text-[7vw] lg:text-[5.5vw] text-paper mb-6">
+        A Club Born<br>at a Party.
+      </h2>
+      <p class="font-serif italic text-xl md:text-2xl text-red leading-snug q-slash pl-5 max-w-md">
+        "I can form a rugby team that could beat any other in the province of Alberta."
+      </p>
+      <div class="mt-3 text-xs uppercase tracking-[0.2em] text-paper/50 pl-5">— Chris Battin, founder, a Welshman with a point to prove</div>
+    </div>
+
+    <div class="md:col-span-7 lg:col-start-7 lg:col-span-6 reveal space-y-5 text-paper/80 text-base md:text-lg leading-relaxed">
+      <p>
+        That boast at a party in 1959 became a rugby club. A Welshman, Chris Battin, made the declaration and followed through. His father Tom Battin became the team's first trainer. And the name — The Druids — came from first captain <strong>Brian Jones</strong>, who chose it for a club that was already wearing red.
+      </p>
+      <p>
+        The early years were quiet. Then the roof came off. From <strong>1966 to 1968</strong>, The Druids took three consecutive Edmonton and Alberta championship titles. Titles would keep coming at the city and provincial level, and the club would go on to test itself against international opposition around the world.
+      </p>
+      <p>
+        Through the 1980s the club opened its doors to junior boys. The 1990s added junior girls and senior women's rugby. In 1997, the Edmonton Druids merged with the Strathcona Outlaws — a union that brought the club home to a proper ground in Sherwood Park. Sixty-six years on, the Druids remain a mainstay of rugby in Strathcona County.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="relative bg-ink text-paper pb-24 md:pb-32">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-4 lg:col-span-3">
+        <div class="md:sticky md:top-28">
+          <div class="text-[11px] uppercase tracking-[0.24em] text-red font-semibold mb-3">The Ledger</div>
+          <h3 class="font-display text-5xl md:text-6xl leading-none mb-4">Sixty-Six<br>Seasons.</h3>
+          <p class="text-paper/60 max-w-xs text-sm md:text-base">From one Welshman's declaration to a $699K grant. Every chapter earned.</p>
+        </div>
+      </div>
+
+      <ol class="md:col-span-8 lg:col-start-6 lg:col-span-7 relative pl-6 border-l border-paper/15 space-y-10">
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-red leading-none">1959</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Founded</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">Chris Battin's challenge at a party becomes a club. Brian Jones is first captain and names it The Druids. Tom Battin trains the squad.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-gold leading-none">1966–68</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Three In A Row</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">Three consecutive Edmonton and Alberta championship titles. The club finds its edge, and the travel starts.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-paper leading-none">1975</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Druid Security</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">The club's own security group goes pro — later running events at Commonwealth Stadium, Rexall Place and the Grey Cup.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-paper leading-none">1980s</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Junior Boys Open</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">The Druids expand from a senior men's club to a pipeline, launching a junior boys program that feeds every side after.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-paper leading-none">1990s</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">Girls + Women + Merger</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">Junior girls and senior women's programs join the club. In 1997 the Edmonton Druids merge with the Strathcona Outlaws — and the Druids come home to Sherwood Park.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-red leading-none">2010</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">50th Anniversary</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">The grounds are renamed <strong>Lynn Davies Rugby Park</strong>, honouring the man who acquired and maintained them, and brought rugby to Strathcona County.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-paper leading-none">2020</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">60th Anniversary</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">Six decades of rugby in the Edmonton and Strathcona communities.</p>
+        </li>
+        <li class="t-dot reveal">
+          <div class="flex items-baseline gap-4 mb-1">
+            <span class="font-display text-4xl md:text-5xl text-red leading-none">2026</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-paper/50">The Next Chapter</span>
+          </div>
+          <p class="text-paper/80 leading-relaxed max-w-xl">A $699,508 provincial grant lands. A new modular clubhouse and realigned pitches are on the way. Built with Stalcorp, Total Modular Limited, and McElhanney.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="relative bg-paper text-ink py-16 md:py-24 border-t border-b border-ink/10">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+    <div class="reveal">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-red-deep font-semibold mb-2">Since</div>
+      <div class="font-display text-6xl md:text-7xl lg:text-8xl leading-none text-ink">66</div>
+      <div class="rule-strong my-3 text-ink/40"></div>
+      <div class="text-sm text-ink/70">Years of Alberta rugby</div>
+    </div>
+    <div class="reveal">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-red-deep font-semibold mb-2">Championships</div>
+      <div class="font-display text-6xl md:text-7xl lg:text-8xl leading-none text-ink"><span class="text-gold">3×</span></div>
+      <div class="rule-strong my-3 text-ink/40"></div>
+      <div class="text-sm text-ink/70">Consecutive Edmonton &amp; Alberta titles, 1966–68</div>
+    </div>
+    <div class="reveal">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-red-deep font-semibold mb-2">Programs</div>
+      <div class="font-display text-6xl md:text-7xl lg:text-8xl leading-none text-ink">5</div>
+      <div class="rule-strong my-3 text-ink/40"></div>
+      <div class="text-sm text-ink/70">Mini, Junior Boys, Junior Girls, Senior Men, Senior Women</div>
+    </div>
+    <div class="reveal">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-red-deep font-semibold mb-2">2026 Grant</div>
+      <div class="font-display text-6xl md:text-7xl lg:text-8xl leading-none text-red">$699<span class="text-ink text-4xl md:text-5xl lg:text-6xl">K</span></div>
+      <div class="rule-strong my-3 text-ink/40"></div>
+      <div class="text-sm text-ink/70">Province of Alberta, for Lynn Davies Rugby Park</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="relative bg-ink text-paper py-20 md:py-32 overflow-hidden">
+  <div class="absolute inset-x-0 top-0 pointer-events-none" aria-hidden="true">
+    <div class="bg-wordmark">PROGRAMS</div>
+  </div>
+
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-12 gap-6 mb-12 md:mb-16">
+      <div class="md:col-span-6">
+        <div class="text-[11px] uppercase tracking-[0.24em] text-red font-semibold mb-4">Every Age, Every Grade</div>
+        <h2 class="display-xl text-[14vw] md:text-[6vw] lg:text-[5vw] leading-none">Play a Real Game.</h2>
+      </div>
+      <div class="md:col-span-5 md:col-start-8 self-end text-paper/75 text-lg">
+        From U5 flag on Saturday mornings to senior men's and women's sides every weekend. Qualified coaches. Game-day jerseys provided. Friendships that outlast the bruises.
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-0 md:gap-6 border-y border-paper/15">
+      <!-- Mini -->
+      <article id="play" class="cornered group relative border-t md:border-t border-paper/15 md:border-paper/0 p-6 md:p-8 hover:bg-paper/[0.03] transition-colors">
+        <span class="c-bl"></span><span class="c-br"></span>
+        <div class="flex items-start justify-between mb-5">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-red font-semibold mb-1">01 · Ages U5–U18</div>
+            <h3 class="font-display text-4xl md:text-5xl leading-none text-paper">Mini Rugby</h3>
+          </div>
+          <svg class="text-red" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="text-paper/70 mb-4 leading-relaxed">Flag rugby for U5–U9 (non-contact); contact rugby from U11. Saturday morning festivals May–July. Flag belts and rugby balls provided; red shirts are standard kit for the youngest age groups.</p>
+        <div class="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.18em] text-paper/60">
+          <span class="border border-paper/20 px-2 py-1">Flag U5–U9</span>
+          <span class="border border-paper/20 px-2 py-1">Contact U11+</span>
+          <span class="border border-paper/20 px-2 py-1">Sat AM · May–Jul</span>
+        </div>
+      </article>
+
+      <!-- Junior -->
+      <article class="cornered group relative border-t md:border-t border-paper/15 md:border-paper/0 md:border-l p-6 md:p-8 hover:bg-paper/[0.03] transition-colors">
+        <span class="c-bl"></span><span class="c-br"></span>
+        <div class="flex items-start justify-between mb-5">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-red font-semibold mb-1">02 · Boys &amp; Girls</div>
+            <h3 class="font-display text-4xl md:text-5xl leading-none text-paper">Junior Rugby</h3>
+          </div>
+          <svg class="text-red" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="text-paper/70 mb-4 leading-relaxed">Fast-flowing rugby for U13/U15 on Sundays and U16/U18 weeknight league games across the city. Qualified coaches, inclusive of all body types, team managed through TeamSnap.</p>
+        <div class="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.18em] text-paper/60">
+          <span class="border border-paper/20 px-2 py-1">U13 · U15 · U16 · U18</span>
+          <span class="border border-paper/20 px-2 py-1">Contact · League</span>
+          <span class="border border-paper/20 px-2 py-1">TeamSnap</span>
+        </div>
+      </article>
+
+      <!-- Senior Men -->
+      <article class="cornered group relative border-t border-paper/15 p-6 md:p-8 hover:bg-paper/[0.03] transition-colors">
+        <span class="c-bl"></span><span class="c-br"></span>
+        <div class="flex items-start justify-between mb-5">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-red font-semibold mb-1">03 · The Original Side</div>
+            <h3 class="font-display text-4xl md:text-5xl leading-none text-paper">Senior Men</h3>
+          </div>
+          <svg class="text-red" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="text-paper/70 mb-4 leading-relaxed">The founding program. Competitive senior men's rugby in the Edmonton Rugby Union circuit, carrying the 1966–68 championship DNA into every home match at Lynn Davies.</p>
+        <div class="text-xs text-paper/55"><span class="text-paper">Contact:</span> Chuck Bonsant, VP Men's Rugby — <a href="mailto:mensrugby@druidsrfc.com" class="underline hover:text-paper">mensrugby@druidsrfc.com</a></div>
+      </article>
+
+      <!-- Senior Women -->
+      <article class="cornered group relative border-t md:border-l border-paper/15 p-6 md:p-8 hover:bg-paper/[0.03] transition-colors">
+        <span class="c-bl"></span><span class="c-br"></span>
+        <div class="flex items-start justify-between mb-5">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-red font-semibold mb-1">04 · 1990s To Now</div>
+            <h3 class="font-display text-4xl md:text-5xl leading-none text-paper">Senior Women</h3>
+          </div>
+          <svg class="text-red" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="text-paper/70 mb-4 leading-relaxed">Full-contact competitive women's rugby, rooted in the program the Druids built in the 1990s. Training runs year-round at the park.</p>
+        <div class="text-xs text-paper/55"><span class="text-paper">Contact:</span> Amber Robertson-Grafton, VP Women's Rugby — <a href="mailto:womensrugby@druidsrfc.com" class="underline hover:text-paper">womensrugby@druidsrfc.com</a></div>
+      </article>
+    </div>
+
+    <div class="mt-10 md:mt-14 text-center">
+      <a href="https://signup.com/go/bsyEHDr" target="_blank" rel="noopener" class="inline-flex items-center gap-3 text-sm md:text-base uppercase tracking-[0.18em] text-paper/85 hover:text-paper border-b border-paper/30 hover:border-paper pb-1 transition-colors">
+        Register via Alberta Rugby Union
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LYNN DAVIES PARK -->
+<section id="park" class="relative bg-paper text-ink py-20 md:py-32 overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-10 md:gap-12">
+    <div class="md:col-span-5 lg:col-span-4 reveal">
+      <div class="text-[11px] uppercase tracking-[0.24em] text-red-deep font-semibold mb-4">The Ground</div>
+      <h2 class="display-xl text-[15vw] md:text-[7vw] lg:text-[5.5vw] leading-[0.88] text-ink mb-6">
+        Lynn Davies<br>Rugby Park.
+      </h2>
+      <p class="text-ink/75 text-lg leading-relaxed mb-5">
+        Named in 2010 for the Sherwood Park rugby pioneer who acquired and maintained the grounds, then helped the Druids and Outlaws find a home together. Still the heartbeat of the club today.
+      </p>
+      <div class="rule-strong my-6 text-ink/20"></div>
+      <dl class="space-y-3 text-sm text-ink/75">
+        <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+          <dt class="uppercase tracking-[0.16em] text-xs text-ink/55">Address</dt>
+          <dd class="text-right font-medium">23360 Township Rd 524A<br>Sherwood Park, AB T8A 4S7</dd>
+        </div>
+        <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+          <dt class="uppercase tracking-[0.16em] text-xs text-ink/55">Clubhouse</dt>
+          <dd class="text-right">Full clubhouse &amp; field rentals</dd>
+        </div>
+        <div class="flex justify-between gap-4 border-b border-ink/10 pb-3">
+          <dt class="uppercase tracking-[0.16em] text-xs text-ink/55">Facilities</dt>
+          <dd class="text-right">Multi-field grass pitches with certified layouts</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="uppercase tracking-[0.16em] text-xs text-ink/55">Rentals</dt>
+          <dd class="text-right"><a href="mailto:facilities@druidsrfc.com" class="underline hover:text-red">facilities@druidsrfc.com</a></dd>
+        </div>
+      </dl>
+      <a href="mailto:facilities@druidsrfc.com" class="mt-6 inline-flex items-center justify-center gap-2 bg-ink text-paper px-6 py-3.5 rounded-sm uppercase tracking-[0.14em] text-sm font-semibold hover:bg-red transition-colors">
+        Rent the Ground
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="md:col-span-7 lg:col-span-8 reveal">
+      <div class="relative">
+        <img src="https://static.wixstatic.com/media/e73b12_0960beeb91b8413988504209611cbbde~mv2.png"
+             alt="Lynn Davies Rugby Park — Sherwood Park, AB"
+             loading="lazy" class="w-full h-auto border-4 border-ink/10"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="w-full aspect-[16/10] bg-ink/5 border-4 border-ink/10 items-center justify-center">
+          <span class="font-display text-5xl text-ink/20">LYNN DAVIES RUGBY PARK</span>
+        </div>
+      </div>
+
+      <blockquote class="mt-8 md:mt-10 pl-6 border-l-[3px] border-red max-w-2xl">
+        <p class="font-serif italic text-xl md:text-2xl text-ink/85 leading-snug mb-4">
+          Three years after moving to Sherwood Park, Davies set his sights on bringing rugby to the community — and spent three decades making it so. In 2010 the club renamed the grounds in his honour.
+        </p>
+        <footer class="text-xs uppercase tracking-[0.18em] text-ink/50">On Lynn Davies — Druids RFC historical record</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP / GET INVOLVED -->
+<section id="support" class="relative bg-ink text-paper py-20 md:py-28">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-12 gap-6 mb-12">
+      <div class="md:col-span-8">
+        <div class="text-[11px] uppercase tracking-[0.24em] text-red font-semibold mb-4">The Club Runs on Its People</div>
+        <h2 class="display-xl text-[13vw] md:text-[5.5vw] lg:text-[4.5vw] leading-none">Three ways in.</h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <a href="https://signup.com/go/bsyEHDr" target="_blank" rel="noopener" class="group block border border-paper/15 p-7 md:p-8 hover:border-red hover:bg-paper/[0.03] transition-colors">
+        <div class="text-[10px] uppercase tracking-[0.24em] text-red font-bold mb-6">01 · Play</div>
+        <h3 class="font-display text-3xl md:text-4xl leading-none mb-4">Register for a Side.</h3>
+        <p class="text-paper/70 text-sm leading-relaxed mb-5">Sign up through Alberta Rugby Union / Sport Lomo. Mini, junior, senior — boys, girls, men, women.</p>
+        <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-paper/90 group-hover:text-red transition-colors">
+          Register
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a href="https://signup.com/go/bsyEHDr" target="_blank" rel="noopener" class="group block border border-paper/15 p-7 md:p-8 hover:border-red hover:bg-paper/[0.03] transition-colors">
+        <div class="text-[10px] uppercase tracking-[0.24em] text-red font-bold mb-6">02 · Volunteer</div>
+        <h3 class="font-display text-3xl md:text-4xl leading-none mb-4">Run the Training Nights.</h3>
+        <p class="text-paper/70 text-sm leading-relaxed mb-5">The 2026 volunteer signup is live. Families pitching in on BBQ Fridays, tournaments, and fundraisers is what keeps our fees low and our programs strong.</p>
+        <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-paper/90 group-hover:text-red transition-colors">
+          Sign up
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a href="mailto:president@druidsrfc.com" class="group block border border-paper/15 p-7 md:p-8 hover:border-red hover:bg-paper/[0.03] transition-colors">
+        <div class="text-[10px] uppercase tracking-[0.24em] text-red font-bold mb-6">03 · Sponsor</div>
+        <h3 class="font-display text-3xl md:text-4xl leading-none mb-4">Back the Next Chapter.</h3>
+        <p class="text-paper/70 text-sm leading-relaxed mb-5">The $699K grant covers the floor. Builders and brands who want to stand next to a 66-year club can talk to Jeremy Anthony, Club President.</p>
+        <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-paper/90 group-hover:text-red transition-colors">
+          president@druidsrfc.com
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS MARQUEE -->
+<section class="bg-ink text-paper py-12 md:py-16 border-y border-paper/10 overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 mb-6 md:mb-10">
+    <div class="flex items-center justify-between gap-5 flex-wrap">
+      <div class="text-[11px] uppercase tracking-[0.24em] text-paper/55">Partners &amp; Sponsors</div>
+      <a href="mailto:president@druidsrfc.com" class="text-[11px] uppercase tracking-[0.18em] text-red hover:text-paper transition-colors border-b border-red/40 hover:border-paper pb-0.5">Become a sponsor →</a>
+    </div>
+  </div>
+
+  <div class="marquee-wrap relative">
+    <div class="marquee">
+      <!-- Set 1 -->
+      <img src="https://static.wixstatic.com/media/24d019_42fc5a259e7640a4864dc6d326f03602~mv2.png" alt="Revolution Crane" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/24d019_cee33a0c595b4d67a67ade6ce778ee00~mv2.png" alt="Escom" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/24d019_9a26d53828784c559aee65d5b9dbe38f~mv2.png" alt="Pasifika" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_62553e538db5435ebab2253e3add4fdf~mv2.png" alt="North 49 Hi" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_cb2843210df04c3dbd6e2d44f2f4f2b2~mv2.jpeg" alt="Summerside Children and Sport Physiotherapy" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/24d019_a77620f7dfb6473897496c5f545ed72f~mv2.png" alt="IS2" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_e6b2921c5ed141c391e28c88276e100d~mv2.jpg" alt="Kukri Sports" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_11900c7878d64c358dda659b79614d0b~mv2.png" alt="Windermere Studios" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/e73b12_0561a1e863874b04b55525db901edff4~mv2.png" alt="Brandz Marketing" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <img src="https://static.wixstatic.com/media/24d019_42fc5a259e7640a4864dc6d326f03602~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/24d019_cee33a0c595b4d67a67ade6ce778ee00~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/24d019_9a26d53828784c559aee65d5b9dbe38f~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_62553e538db5435ebab2253e3add4fdf~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_cb2843210df04c3dbd6e2d44f2f4f2b2~mv2.jpeg" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/24d019_a77620f7dfb6473897496c5f545ed72f~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_e6b2921c5ed141c391e28c88276e100d~mv2.jpg" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/5c77aa_11900c7878d64c358dda659b79614d0b~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+      <img src="https://static.wixstatic.com/media/e73b12_0561a1e863874b04b55525db901edff4~mv2.png" alt="" aria-hidden="true" class="sponsor-chip h-10 md:h-12 w-auto shrink-0" loading="lazy" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="relative bg-ink text-paper pt-16 md:pt-24 pb-4 overflow-hidden">
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-12 gap-10 md:gap-8">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="https://static.wixstatic.com/media/5c77aa_0a3b4f2049be496699f4ba28a066b300~mv2.png" alt="Strathcona Druids crest" class="h-12 w-12 object-contain"
+               onerror="this.style.display='none'">
+          <div>
+            <div class="font-display text-2xl tracking-wider">Strathcona Druids</div>
+            <div class="text-[11px] uppercase tracking-[0.2em] text-paper/55">Rugby Football Club · Est. 1959</div>
+          </div>
+        </div>
+        <p class="text-paper/70 max-w-sm text-sm leading-relaxed mb-6">Sixty-six years of Alberta rugby. Every age grade, every weekend. Home at Lynn Davies Rugby Park in Sherwood Park.</p>
+
+        <div class="flex items-center gap-3">
+          <a href="https://www.facebook.com/StrathconaDruidsRFC/" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 border border-paper/20 flex items-center justify-center hover:bg-red hover:border-red transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07C2 17.1 5.66 21.26 10.44 22v-7.03H7.9v-2.9h2.54V9.84c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33V22C18.34 21.26 22 17.1 22 12.07z"/></svg>
+          </a>
+          <a href="https://twitter.com/druidsrfc" target="_blank" rel="noopener" aria-label="Twitter" class="w-9 h-9 border border-paper/20 flex items-center justify-center hover:bg-red hover:border-red transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/druidsrfc/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 border border-paper/20 flex items-center justify-center hover:bg-red hover:border-red transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="text-[11px] uppercase tracking-[0.24em] text-red font-semibold mb-4">Reach the Club</div>
+        <dl class="space-y-3 text-sm text-paper/75">
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.16em] text-paper/45">General</dt>
+            <dd><a href="mailto:info@druidsrfc.com" class="hover:text-paper">info@druidsrfc.com</a></dd>
+          </div>
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.16em] text-paper/45">President</dt>
+            <dd>Jeremy Anthony — <a href="mailto:president@druidsrfc.com" class="hover:text-paper">president@druidsrfc.com</a></dd>
+            <dd class="text-paper/55">780-690-2226</dd>
+          </div>
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.16em] text-paper/45">Junior Rugby</dt>
+            <dd><a href="mailto:juniors@druidsrfc.com" class="hover:text-paper">juniors@druidsrfc.com</a></dd>
+            <dd class="text-paper/55">Brent Gallagher · 780-970-1145</dd>
+          </div>
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.16em] text-paper/45">Facilities &amp; Rentals</dt>
+            <dd><a href="mailto:facilities@druidsrfc.com" class="hover:text-paper">facilities@druidsrfc.com</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="md:col-span-4">
+        <div class="text-[11px] uppercase tracking-[0.24em] text-red font-semibold mb-4">Find the Ground</div>
+        <p class="text-sm text-paper/80 leading-relaxed mb-4">
+          Lynn Davies Rugby Park<br>
+          23360 Township Road 524A<br>
+          Sherwood Park, Alberta T8A 4S7<br>
+          <a href="tel:7804491793" class="hover:text-paper">780-449-1793</a>
+        </p>
+        <div class="flex gap-3 mb-5">
+          <a href="#play" class="btn-red inline-flex items-center gap-2 px-4 py-2.5 rounded-sm uppercase tracking-[0.14em] text-xs font-semibold">Join the Pack</a>
+          <a href="mailto:facilities@druidsrfc.com" class="btn-outline inline-flex items-center gap-2 px-4 py-2.5 rounded-sm uppercase tracking-[0.14em] text-xs font-semibold">Rent the Ground</a>
+        </div>
+        <nav class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] uppercase tracking-[0.14em] text-paper/55">
+          <a href="#heritage" class="hover:text-paper">Heritage</a>
+          <a href="#programs" class="hover:text-paper">Programs</a>
+          <a href="#park" class="hover:text-paper">The Park</a>
+          <a href="#grant" class="hover:text-paper">Grant</a>
+          <a href="#support" class="hover:text-paper">Support</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Massive wordmark -->
+    <div class="relative mt-16 md:mt-24 overflow-hidden">
+      <div class="bg-wordmark" style="font-size: clamp(5rem, 23vw, 20rem);">DRUIDS</div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-6 pt-6 border-t border-paper/10 text-[11px] uppercase tracking-[0.14em] text-paper/45">
+      <div>© 2023–2026 Strathcona Druids Rugby Football Club. All rights reserved.</div>
+      <div>Est. 1959 · Sherwood Park, Alberta · Canada</div>
+    </div>
+  </div>
+
+  <!-- Banana Bytes credit (required per CLAUDE.md) -->
+  <div style="text-align:center; padding:1.5rem 1rem 0; font-size:0.7rem; letter-spacing:0.05em; opacity:0.45;">
+    <a href="https://instagram.com/BananaCares" target="_blank" rel="noopener" style="text-decoration:none; color:#F5F2EC;">
+      Mockup created by Banana Bytes
+    </a>
+  </div>
+</footer>
+
+<script>
+// Nav scroll state
+const nav = document.getElementById('nav');
+const onScroll = () => {
+  if (window.scrollY > 20) nav.classList.add('nav-scrolled');
+  else nav.classList.remove('nav-scrolled');
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// Mobile menu
+const mmToggle = document.getElementById('mm-toggle');
+const mm = document.getElementById('mm');
+mmToggle.addEventListener('click', () => {
+  const open = mm.classList.toggle('mm-open');
+  mm.classList.toggle('mm-closed', !open);
+});
+mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mm.classList.remove('mm-open');
+  mm.classList.add('mm-closed');
+}));
+
+// Reveal on scroll (iOS-safe: content visible by default via CSS; reveals progressively)
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+
+// Swap hero background when image exists (cache-friendly)
+(function loadHero() {
+  const img = new Image();
+  img.onload = () => {
+    const bg = document.getElementById('hero-image');
+    if (!bg) return;
+    bg.style.backgroundImage = `url(images/hero.jpg)`;
+    bg.classList.add('loaded');
+  };
+  img.onerror = () => { /* keep gradient */ };
+  img.src = 'images/hero.jpg';
+})();
+</script>
+</body>
+</html>
